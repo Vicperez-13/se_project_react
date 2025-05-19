@@ -100,6 +100,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </div>
         <AddItemModal
           onClose={closeActiveModal}
@@ -111,7 +112,6 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
         />
-        <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );

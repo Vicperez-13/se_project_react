@@ -8,13 +8,13 @@
   margin-right: 24px;
 }
 
-.header_date-and-location {
+.header__date-and-location {
   margin: 0;
   font-size: 20px;
 }
 
 .header__add-clothes-btn {
-  margin: 0 20px 0 auto;
+  margin: 0;
   background-color: transparent;
   border: none;
   font-size: 20px;
@@ -34,10 +34,25 @@
 .header__actions {
   display: flex;
   align-items: center;
-  margin-left: auto;
-  gap: 16px;
+  gap: 12px;
+  margin-left: 0;
 }
+
 .header__link {
   text-decoration: none;
   color: inherit;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%; /* <-- Add this line */
+}
+
+.header__right-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: auto;
 }

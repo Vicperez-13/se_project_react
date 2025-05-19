@@ -1,4 +1,5 @@
 import ItemCard from "../Main/ItemCard/ItemCard";
+import "./ClothesSection.css";
 
 function ClothesSection({ weatherData, clothingItems, onCardClick }) {
   const handleCardClick = (item) => {
@@ -8,8 +9,8 @@ function ClothesSection({ weatherData, clothingItems, onCardClick }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__items">
-        <p>your Items</p>
-        <button>+ Add New</button>
+        <p>Your items</p>
+        <button className="clothes-section__button">+ Add new</button>
       </div>
       <ul className="cards__list">
         {clothingItems

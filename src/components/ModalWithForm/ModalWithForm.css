@@ -38,18 +38,14 @@
   top: 20px;
   right: 28px;
 }
-.modal__close:hover {
-  background: #0000004d;
-}
 
 .modal__content {
   background-color: #fff;
   position: relative;
-  max-width: 498px;
-  max-height: 610px;
-  width: 100%;
   box-sizing: border-box;
   border-radius: 16px;
+}
+.modal__content_type_form {
   width: 496px;
   height: 436px;
   padding: 28px 32px;
@@ -83,19 +79,6 @@
   font-weight: 700;
 }
 
-.modal__radio-btns {
-  border: none;
-  padding: 0;
-}
-.modal_label-container-radio {
-  margin-top: 8px;
-  padding-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0;
-  font-size: 16px;
-}
 .modal__caption {
   padding-left: 32px;
   margin-top: 0;
@@ -112,9 +95,9 @@
   border-radius: 4px;
   border: none;
   color: #fff;
-  background: #0000004d;
+  background: #000;
   font-weight: 700;
 }
 .modal__submit:hover {
-  background: #000;
+  background: #0000004d;
 }
