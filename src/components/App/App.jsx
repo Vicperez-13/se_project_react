@@ -54,6 +54,13 @@ function App() {
     closeActiveModal();
   };
 
+  const handleDeleteItem = (card) => {
+    setClothingItems((prevItems) =>
+      prevItems.filter((item) => item._id !== card._id)
+    );
+    setActiveModal("");
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -111,6 +118,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          onDelete={handleDeleteItem}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
