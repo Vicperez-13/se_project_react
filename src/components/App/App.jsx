@@ -48,10 +48,10 @@ function App() {
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     // const newId = math.max(...clothingItems.map((item) => item.id)) + 1;
     setClothingItems((prevItems) => [
-      { name, link: imageUrl, weather },
+      { _id: prevItems.length, name, imageUrl, weather },
       ...prevItems,
     ]);
-    closeAllModals();
+    closeActiveModal();
   };
 
   useEffect(() => {

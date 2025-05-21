@@ -1,19 +1,14 @@
-import sunny from "../../../assets/day/clear.png";
 import "./WeatherCard.css";
-import {
-  weatherOptions,
-  defaultWeatherOptions,
-} from "../../../utils/constants";
+import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 import { useContext } from "react";
-import CurrentTemperatureUnitContext from "../../../context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 
 function WeatherCard({ weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const filteredOptions = weatherOptions.filter((option) => {
     return (
-      console.log("Weather Data:", weatherData),
       option.day === weatherData.isDay &&
-        option.condition === weatherData.condition
+      option.condition === weatherData.condition
     );
   });
 
@@ -33,7 +28,7 @@ function WeatherCard({ weatherData }) {
       </p>
       <img
         src={weatherOption?.url}
-        alt={`Card showing ${weatherData.option?.day ? "day" : "night"} time ${
+        alt={`Card showing ${weatherOption.day ? "day" : "night"} time ${
           weatherOption?.condition
         } weather`}
         className="weather-card__img"
