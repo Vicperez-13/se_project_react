@@ -1,4 +1,4 @@
-import ItemCard from "../Main/ItemCard/ItemCard";
+import ItemCard from "../../components/ItemCard/ItemCard";
 import "./ClothesSection.css";
 
 function ClothesSection({ weatherData, clothingItems, onCardClick }) {
