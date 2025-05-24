@@ -109,6 +109,7 @@ function App() {
                     weatherData={weatherData}
                     clothingItems={clothingItems}
                     handleCardClick={handleCardClick}
+                    handleAddClick={handleAddClick}
                   />
                 }
               />

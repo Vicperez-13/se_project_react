@@ -18,6 +18,7 @@
   background-color: transparent;
   border: none;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .header__user-container {

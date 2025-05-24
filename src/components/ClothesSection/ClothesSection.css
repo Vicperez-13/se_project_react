@@ -11,6 +11,6 @@
 .clothes-section__button {
   background-color: transparent;
   border: none;
-
+  cursor: pointer;
   color: #00000099;
 }
