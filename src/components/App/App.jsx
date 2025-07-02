@@ -4,6 +4,8 @@ import { Route, HashRouter, Routes } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
@@ -13,6 +15,7 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 import { getItems, addItem, deleteItem } from "../../utils/api";
+import { signIn, signUp } from "../../../middlewares/authAPI";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -27,6 +30,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -50,6 +55,27 @@ function App() {
     addItem(item)
       .then((updatedItem) => {
         setClothingItems((prevItems) => [updatedItem, ...prevItems]);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleRegisterModalSubmit = ({ name, avatar, email, password }) => {
+    signUp(name, avatar, email, password)
+      .then((user) => {
+        console.log("Registration successful:", user);
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+  const handleLoginModalSubmit = ({ email, password }) => {
+    signIn(email, password)
+      .then((user) => {
+        console.log("Login successful:", user);
+        setCurrentUser(user);
+        setIsLoggedIn(true);
         closeActiveModal();
       })
       .catch(console.error);
@@ -116,6 +142,16 @@ function App() {
             </Routes>
             <Footer />
           </div>
+          <RegisterModal
+            onClose={closeActiveModal}
+            isOpen={activeModal === "register"}
+            onRegisterModalSubmit={handleRegisterModalSubmit}
+          />
+          <LoginModal
+            onClose={closeActiveModal}
+            isOpen={activeModal === "login"}
+            onLoginModalSubmit={handleLoginModalSubmit}
+          />
           <AddItemModal
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
