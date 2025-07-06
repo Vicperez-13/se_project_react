@@ -7,11 +7,12 @@ function Profile({
   clothingItems,
   handleCardClick,
   handleAddClick,
+  onEditProfile,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar onEditProfile={onEditProfile} />
       </section>
       <section className="profile__content">
         <ClothesSection

@@ -37,3 +37,17 @@ export function checkToken(token) {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 }
+
+export function updateProfile(userData) {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(userData),
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  });
+}

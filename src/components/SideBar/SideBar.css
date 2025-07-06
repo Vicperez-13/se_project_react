@@ -1,4 +1,47 @@
 .sidebar {
   display: flex;
+  flex-direction: column;
   gap: 15px;
+  align-items: flex-start;
+}
+
+.sidebar__avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar__avatar-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.sidebar__username {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sidebar__edit-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 0;
+  color: #000;
+  text-decoration: none;
+}
+
+.sidebar__edit-btn:hover {
+  color: #313232;
 }

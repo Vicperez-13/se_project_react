@@ -13,9 +13,15 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { defaultClothingItems } from "../../utils/constants";
 import { getItems, addItem, deleteItem } from "../../utils/api";
-import { signIn, signUp, checkToken } from "../../../middlewares/auth";
+import {
+  signIn,
+  signUp,
+  checkToken,
+  updateProfile,
+} from "../../../middlewares/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
 
 function App() {
@@ -116,6 +122,22 @@ function App() {
     setIsLoggedIn(false);
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const handleEditProfileModalSubmit = ({ name, avatar }) => {
+    updateProfile({ name, avatar })
+      .then((user) => {
+        console.log("Profile updated successfully:", user);
+        setCurrentUser(user);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Error updating profile:", err);
+      });
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -182,6 +204,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
+                      onEditProfile={handleEditProfileClick}
                     />
                   }
                 />
@@ -208,6 +231,11 @@ function App() {
               card={selectedCard}
               onClose={closeActiveModal}
               onDelete={handleDeleteItem}
+            />
+            <EditProfileModal
+              onClose={closeActiveModal}
+              isOpen={activeModal === "edit-profile"}
+              onEditProfile={handleEditProfileModalSubmit}
             />
           </div>
         </CurrentTemperatureUnitContext.Provider>
