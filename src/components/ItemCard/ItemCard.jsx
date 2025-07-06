@@ -5,13 +5,15 @@ function ItemCard({ item, onCardClick }) {
     onCardClick(item);
   };
 
+  const imageUrl = item.imageUrl || item.link;
+
   return (
     <li className="card">
       <h2 className="card__name">{item.name}</h2>
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={item.imageUrl}
+        src={imageUrl}
         alt={item.name}
       />
     </li>
