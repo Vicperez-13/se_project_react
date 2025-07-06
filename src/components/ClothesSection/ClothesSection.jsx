@@ -8,6 +8,7 @@ function ClothesSection({
   clothingItems,
   onCardClick,
   handleAddClick,
+  onCardLike,
 }) {
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -38,6 +39,7 @@ function ClothesSection({
               key={item._id}
               item={item}
               onCardClick={handleCardClick}
+              onCardLike={onCardLike}
             />
           );
         })}

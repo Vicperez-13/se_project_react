@@ -64,4 +64,44 @@ function getItems() {
     });
 }
 
+export function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
+    })
+    .catch((err) => {
+      console.error("Error liking item:", err);
+      return Promise.reject(err);
+    });
+}
+
+export function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
+    })
+    .catch((err) => {
+      console.error("Error unliking item:", err);
+      return Promise.reject(err);
+    });
+}
+
 export { getItems };

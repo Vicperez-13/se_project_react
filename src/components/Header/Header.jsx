@@ -2,7 +2,7 @@ import { useContext } from "react";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CurrentUserContext from "../../context/CurrentUserContext";
 
 function Header({
@@ -13,6 +13,8 @@ function Header({
   onLogout,
 }) {
   const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
+  const location = useLocation();
+  const isProfilePage = location.pathname === "/profile";
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -44,13 +46,15 @@ function Header({
                 >
                   + Add Clothes
                 </button>
-                <button
-                  onClick={onLogout}
-                  type="button"
-                  className="header__logout-btn"
-                >
-                  Log Out
-                </button>
+                {!isProfilePage && (
+                  <button
+                    onClick={onLogout}
+                    type="button"
+                    className="header__logout-btn"
+                  >
+                    Log Out
+                  </button>
+                )}
               </>
             ) : null}
           </div>

@@ -1,8 +1,15 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   align-items: flex-start;
+  padding-top: 135px;
+}
+
+.sidebar__user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 39px;
 }
 
 .sidebar__avatar {
@@ -29,19 +36,34 @@
 .sidebar__username {
   margin: 0;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .sidebar__edit-btn {
   background-color: transparent;
   border: none;
-  font-size: 16px;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px 0;
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.sidebar__edit-btn:hover {
+  color: #313232;
+}
+
+.sidebar__logout-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
   cursor: pointer;
   padding: 8px 0;
   color: #000;
   text-decoration: none;
 }
 
-.sidebar__edit-btn:hover {
+.sidebar__logout-btn:hover {
   color: #313232;
 }

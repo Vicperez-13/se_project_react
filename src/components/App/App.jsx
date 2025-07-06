@@ -15,7 +15,13 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { defaultClothingItems } from "../../utils/constants";
-import { getItems, addItem, deleteItem } from "../../utils/api";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import {
   signIn,
   signUp,
@@ -138,6 +144,26 @@ function App() {
       });
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -193,6 +219,7 @@ function App() {
                       weatherData={weatherData}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
+                      onCardLike={handleCardLike}
                     />
                   }
                 />
@@ -205,6 +232,8 @@ function App() {
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       onEditProfile={handleEditProfileClick}
+                      onCardLike={handleCardLike}
+                      onLogout={handleLogout}
                     />
                   }
                 />
@@ -220,6 +249,7 @@ function App() {
               onClose={closeActiveModal}
               isOpen={activeModal === "login"}
               onLoginModalSubmit={handleLoginModalSubmit}
+              onSignUpClick={handleRegisterClick}
             />
             <AddItemModal
               onClose={closeActiveModal}

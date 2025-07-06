@@ -8,14 +8,37 @@
 .card__text {
   font-size: 20px;
 }
-.card__name {
+.card__header {
   position: absolute;
+  top: 15px;
   left: 0;
   right: 0;
-  top: 15px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1;
+  gap: 8px;
+}
+.card__name {
+  margin: 0;
   color: black;
   text-align: center;
-  width: 100%;
   border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  flex: auto;
+  max-width: 100%;
+}
+.card__like-button {
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.card__like-icon {
+  width: 20px;
+  height: 20px;
 }
