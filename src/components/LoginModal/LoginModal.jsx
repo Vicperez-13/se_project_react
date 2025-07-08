@@ -47,12 +47,12 @@ export default function LoginModal({
         </div>
       }
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email{" "}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="login-email"
           placeholder="Email@gmail.com"
           required
           minLength="3"
@@ -60,12 +60,12 @@ export default function LoginModal({
           value={email}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password{" "}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="login-password"
           placeholder="Password"
           required
           onChange={handlePasswordChange}

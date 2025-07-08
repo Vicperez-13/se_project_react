@@ -30,24 +30,24 @@ function EditProfileModal({ onClose, isOpen, onEditProfile }) {
       onSubmit={handleSubmit}
       className="modal_type_edit-profile"
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="edit-name" className="modal__label">
         Name *
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="edit-name"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="edit-avatar" className="modal__label">
         Avatar URL *
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="edit-avatar"
           placeholder="Avatar URL"
           value={avatar}
           onChange={(e) => setAvatar(e.target.value)}

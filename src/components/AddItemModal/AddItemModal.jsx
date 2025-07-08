@@ -37,12 +37,12 @@ export default function AddItemModal({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="add-name" className="modal__label">
         Name{" "}
         <input
           type="text"
           className="modal__input modal__input_type_card_name"
-          id="name"
+          id="add-name"
           placeholder="Name"
           required
           minLength="2"
@@ -51,12 +51,12 @@ export default function AddItemModal({
           value={name}
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="add-imageUrl" className="modal__label">
         Image{" "}
         <input
           type="url"
           className="modal__input modal__input_type_card_name"
-          id="imageUrl"
+          id="add-imageUrl"
           placeholder="ImageUrl"
           required
           onChange={handleImageUrlChange}

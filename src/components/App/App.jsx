@@ -197,7 +197,12 @@ function App() {
   }, []);
 
   return (
-    <HashRouter>
+    <HashRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
