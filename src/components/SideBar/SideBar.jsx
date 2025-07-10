@@ -17,10 +17,6 @@ function SideBar({ onEditProfile, onLogout }) {
             src={currentUser.avatar}
             alt={currentUser?.name || "User avatar"}
             className="sidebar__avatar"
-            onError={(e) => {
-              console.log("Image failed to load:", currentUser.avatar);
-              e.target.style.display = "none";
-            }}
           />
         ) : (
           <div className="sidebar__avatar-placeholder">

@@ -14,6 +14,7 @@ import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitC
 import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { defaultClothingItems } from "../../utils/constants";
 import {
   getItems,
@@ -82,23 +83,29 @@ function App() {
 
   const handleRegisterModalSubmit = ({ name, avatar, email, password }) => {
     signUp(name, avatar, email, password)
-      .then((user) => {
-        console.log("Registration successful:", user);
+      .then((data) => {
+        console.log("Registration successful:", data);
+        // Store token first
+        localStorage.setItem("jwt", data.token);
+        // Set user data (user info might be in data.user or just data)
+        const user = data.user || data;
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeActiveModal();
-        localStorage.setItem("jwt", user.token);
       })
       .catch(console.error);
   };
   const handleLoginModalSubmit = ({ email, password }) => {
     signIn(email, password)
-      .then((user) => {
-        console.log("Login successful:", user);
+      .then((data) => {
+        console.log("Login successful:", data);
+        // Store token first
+        localStorage.setItem("jwt", data.token);
+        // Set user data (user info might be in data.user or just data)
+        const user = data.user || data;
         setCurrentUser(user);
         setIsLoggedIn(true);
         closeActiveModal();
-        localStorage.setItem("jwt", user.token);
       })
       .catch(console.error);
   };
@@ -192,6 +199,8 @@ function App() {
         .catch((err) => {
           console.error("Token validation failed:", err);
           localStorage.removeItem("jwt");
+          setCurrentUser(null);
+          setIsLoggedIn(false);
         });
     }
   }, []);
@@ -231,15 +240,17 @@ function App() {
                 <Route
                   path="/profile"
                   element={
-                    <Profile
-                      weatherData={weatherData}
-                      clothingItems={clothingItems}
-                      handleCardClick={handleCardClick}
-                      handleAddClick={handleAddClick}
-                      onEditProfile={handleEditProfileClick}
-                      onCardLike={handleCardLike}
-                      onLogout={handleLogout}
-                    />
+                    <ProtectedRoute>
+                      <Profile
+                        weatherData={weatherData}
+                        clothingItems={clothingItems}
+                        handleCardClick={handleCardClick}
+                        handleAddClick={handleAddClick}
+                        onEditProfile={handleEditProfileClick}
+                        onCardLike={handleCardLike}
+                        onLogout={handleLogout}
+                      />
+                    </ProtectedRoute>
                   }
                 />
               </Routes>
@@ -249,6 +260,7 @@ function App() {
               onClose={closeActiveModal}
               isOpen={activeModal === "register"}
               onRegisterModalSubmit={handleRegisterModalSubmit}
+              onLoginClick={handleLoginClick}
             />
             <LoginModal
               onClose={closeActiveModal}

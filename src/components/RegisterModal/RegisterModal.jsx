@@ -6,6 +6,7 @@ export default function RegisterModal({
   isOpen,
   onClose,
   onRegisterModalSubmit,
+  onLoginClick,
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -36,13 +37,28 @@ export default function RegisterModal({
     setPassword("");
     setAvatar("");
   };
+
   return (
     <ModalWithForm
       isOpen={isOpen}
-      title="Register"
-      buttonText="Register"
+      title="Sign Up"
       onClose={onClose}
       onSubmit={handleSubmit}
+      className="modal_type_register"
+      customButtons={
+        <div className="modal__button-group">
+          <button type="submit" className="modal__submit">
+            Sign Up
+          </button>
+          <button
+            type="button"
+            className="modal__login-btn"
+            onClick={onLoginClick}
+          >
+            Log In
+          </button>
+        </div>
+      }
     >
       <label htmlFor="register-avatar" className="modal__label">
         Avatar{" "}
