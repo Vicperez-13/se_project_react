@@ -183,9 +183,12 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems(data && data.length > 0 ? data : defaultClothingItems);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Error fetching items, using default items:", err);
+        setClothingItems(defaultClothingItems);
+      });
   }, []);
 
   useEffect(() => {

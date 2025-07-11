@@ -46,15 +46,6 @@ function Header({
                 >
                   + Add Clothes
                 </button>
-                {!isProfilePage && (
-                  <button
-                    onClick={onLogout}
-                    type="button"
-                    className="header__logout-btn"
-                  >
-                    Log Out
-                  </button>
-                )}
               </>
             ) : null}
           </div>
