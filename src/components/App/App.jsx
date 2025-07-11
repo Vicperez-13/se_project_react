@@ -33,7 +33,7 @@ import CurrentUserContext from "../../context/CurrentUserContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
-    type: "",
+    type: "cold",
     temp: { F: "...", C: "..." },
     city: "",
     condition: "",
@@ -85,9 +85,7 @@ function App() {
     signUp(name, avatar, email, password)
       .then((data) => {
         console.log("Registration successful:", data);
-        // Store token first
         localStorage.setItem("jwt", data.token);
-        // Set user data (user info might be in data.user or just data)
         const user = data.user || data;
         setCurrentUser(user);
         setIsLoggedIn(true);
@@ -99,9 +97,7 @@ function App() {
     signIn(email, password)
       .then((data) => {
         console.log("Login successful:", data);
-        // Store token first
         localStorage.setItem("jwt", data.token);
-        // Set user data (user info might be in data.user or just data)
         const user = data.user || data;
         setCurrentUser(user);
         setIsLoggedIn(true);
