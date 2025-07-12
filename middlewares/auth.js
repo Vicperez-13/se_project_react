@@ -1,5 +1,9 @@
 const baseUrl = "http://localhost:3001";
 
+const checkResponse = (res) => {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+};
+
 export function signUp(name, avatar, email, password) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -8,9 +12,7 @@ export function signUp(name, avatar, email, password) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export function signIn(email, password) {
@@ -21,9 +23,7 @@ export function signIn(email, password) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export function checkToken(token) {
@@ -33,9 +33,7 @@ export function checkToken(token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export function updateProfile(userData) {
@@ -47,7 +45,5 @@ export function updateProfile(userData) {
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(userData),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }

@@ -1,5 +1,11 @@
 const baseUrl = "http://localhost:3001";
 
+export const checkResponse = (res) => {
+  return res.ok
+    ? res.json()
+    : Promise.reject(`Error ${res.status}: ${res.statusText}`);
+};
+
 export function addItem(item) {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
@@ -9,17 +15,7 @@ export function addItem(item) {
       ...(token && { authorization: `Bearer ${token}` }),
     },
     body: JSON.stringify(item),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
-    })
-    .catch((err) => {
-      console.error("Error adding item:", err);
-      return Promise.reject(err);
-    });
+  }).then(checkResponse);
 }
 
 export function deleteItem(id) {
@@ -30,17 +26,7 @@ export function deleteItem(id) {
       "Content-Type": "application/json",
       ...(token && { authorization: `Bearer ${token}` }),
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
-    })
-    .catch((err) => {
-      console.error("Error deleting item:", err);
-      return Promise.reject(err);
-    });
+  }).then(checkResponse);
 }
 
 function getItems() {
@@ -51,17 +37,7 @@ function getItems() {
       "Content-Type": "application/json",
       ...(token && { authorization: `Bearer ${token}` }),
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
-    })
-    .catch((err) => {
-      console.error("Error finding item:", err);
-      return Promise.reject(err);
-    });
+  }).then(checkResponse);
 }
 
 export function addCardLike(id, token) {
@@ -71,17 +47,7 @@ export function addCardLike(id, token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
-    })
-    .catch((err) => {
-      console.error("Error liking item:", err);
-      return Promise.reject(err);
-    });
+  }).then(checkResponse);
 }
 
 export function removeCardLike(id, token) {
@@ -91,17 +57,7 @@ export function removeCardLike(id, token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error ${res.status}: ${res.statusText}`);
-    })
-    .catch((err) => {
-      console.error("Error unliking item:", err);
-      return Promise.reject(err);
-    });
+  }).then(checkResponse);
 }
 
 export { getItems };
