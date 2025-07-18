@@ -1,6 +1,6 @@
 {
   "name": "se_project_react",
-  "homepage": "https://Vicperez-13.github.io/se_project_react/",
+  "homepage": "https://wear-wtwr.jumpingcrab.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build &&  scp -r ./dist/* vp5662021@wear-wtwr.jumpingcrab.com:/home/vp5662021/frontend "
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -1,11 +1,11 @@
-const baseUrl = "http://localhost:3001";
+import { Base_URL } from "../src/utils/constants.js";
 
 const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
 export function signUp(name, avatar, email, password) {
-  return fetch(`${baseUrl}/signup`, {
+  return fetch(`${Base_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -16,7 +16,7 @@ export function signUp(name, avatar, email, password) {
 }
 
 export function signIn(email, password) {
-  return fetch(`${baseUrl}/signin`, {
+  return fetch(`${Base_URL}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -27,7 +27,7 @@ export function signIn(email, password) {
 }
 
 export function checkToken(token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${Base_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export function checkToken(token) {
 
 export function updateProfile(userData) {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${Base_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
