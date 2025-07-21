@@ -118,5 +118,5 @@ export const APIkey = "2e92ba1e564bfa6949565fba15821fd9";
 
 export const Base_URL =
   process.env.NODE_ENV === "production"
-    ? " https://api.wear-wtwr.jumpingcrab.com"
+    ? "https://api.wear-wtwr.jumpingcrab.com"
     : "http://localhost:3001";
